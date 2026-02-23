@@ -1,40 +1,40 @@
-'use client'
+"use client";
 
-import { useRef, useState } from 'react'
-import { useSwipeable } from 'react-swipeable'
-import { PROCESS_STEPS } from '@/lib/constants'
-import { CheckIcon } from '@/icons'
-import { cn } from '@/lib/utils'
+import { useRef, useState } from "react";
+import { useSwipeable } from "react-swipeable";
+import { PROCESS_STEPS } from "@/lib/constants";
+import { CheckIcon } from "@/icons";
+import { cn } from "@/lib/utils";
 
-const SWIPE_THRESHOLD = 0.3
+const SWIPE_THRESHOLD = 0.1;
 export default function HowItWorks() {
-  const [currentStep, setCurrentStep] = useState(0)
-  const [dragOffset, setDragOffset] = useState(0)
+  const [currentStep, setCurrentStep] = useState(0);
+  const [dragOffset, setDragOffset] = useState(0);
 
   const goToStep = (next: number) => {
-    setCurrentStep(next)
-    setDragOffset(0)
-  }
+    setCurrentStep(next);
+    setDragOffset(0);
+  };
 
   const goNext = () =>
-    goToStep(Math.min(currentStep + 1, PROCESS_STEPS.length - 1))
-  const goPrev = () => goToStep(Math.max(currentStep - 1, 0))
+    goToStep(Math.min(currentStep + 1, PROCESS_STEPS.length - 1));
+  const goPrev = () => goToStep(Math.max(currentStep - 1, 0));
 
   const handlers = useSwipeable({
     onSwiping: ({ deltaX }) => setDragOffset(deltaX),
     onSwiped: ({ deltaX, event }) => {
-      const width = (event.currentTarget as HTMLDivElement)?.offsetWidth || 0
-      const swipeFraction = Math.abs(deltaX) / width
+      const width = (event.currentTarget as HTMLDivElement)?.offsetWidth || 0;
+      const swipeFraction = Math.abs(deltaX) / width;
 
       if (deltaX < 0 && swipeFraction > SWIPE_THRESHOLD) {
-        goNext()
+        goNext();
       } else if (deltaX > 0 && swipeFraction > SWIPE_THRESHOLD) {
-        goPrev()
+        goPrev();
       } else {
-        setDragOffset(0)
+        setDragOffset(0);
       }
     },
-  })
+  });
 
   return (
     <section id="how-it-works" className="py-24 bg-white">
@@ -53,8 +53,8 @@ export default function HowItWorks() {
           {/* Left: Stepper */}
           <nav className="flex flex-row lg:flex-col items-center lg:items-start justify-center lg:justify-start gap-0 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 h-full">
             {PROCESS_STEPS.map((s, i) => {
-              const isActive = i === currentStep
-              const isCompleted = i < currentStep
+              const isActive = i === currentStep;
+              const isCompleted = i < currentStep;
               return (
                 <button
                   key={i}
@@ -66,14 +66,14 @@ export default function HowItWorks() {
                     <>
                       <div
                         className={cn(
-                          'absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 md:hidden',
-                          isCompleted ? 'bg-purple-400' : 'bg-gray-200'
+                          "absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 md:hidden",
+                          isCompleted ? "bg-purple-400" : "bg-gray-200",
                         )}
                       />
                       <div
                         className={cn(
-                          'absolute top-10 left-5 hidden h-full w-0.5 -translate-x-1/2 md:block',
-                          isCompleted ? 'bg-purple-400' : 'bg-gray-200'
+                          "absolute top-10 left-5 hidden h-full w-0.5 -translate-x-1/2 md:block",
+                          isCompleted ? "bg-purple-400" : "bg-gray-200",
                         )}
                       />
                     </>
@@ -82,12 +82,12 @@ export default function HowItWorks() {
                   <div className="flex items-center gap-4 lg:pb-10">
                     <div
                       className={cn(
-                        'relative z-10 flex h-10 min-w-[72px] md:min-w-0 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full border-2 font-bold text-sm transition-all duration-300',
+                        "relative z-10 flex h-10 min-w-[72px] md:min-w-0 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full border-2 font-bold text-sm transition-all duration-300",
                         isActive
-                          ? 'border-purple-600 bg-purple-600 text-white shadow-md shadow-purple-200'
+                          ? "border-purple-600 bg-purple-600 text-white shadow-md shadow-purple-200"
                           : isCompleted
-                            ? 'border-purple-400 bg-purple-50 text-purple-600'
-                            : 'border-gray-200 bg-white text-gray-400 group-hover:border-purple-300 group-hover:text-purple-400'
+                            ? "border-purple-400 bg-purple-50 text-purple-600"
+                            : "border-gray-200 bg-white text-gray-400 group-hover:border-purple-300 group-hover:text-purple-400",
                       )}
                     >
                       {isCompleted ? (
@@ -99,20 +99,20 @@ export default function HowItWorks() {
                     <div className="hidden lg:block">
                       <p
                         className={cn(
-                          'text-sm font-semibold transition-colors duration-200',
+                          "text-sm font-semibold transition-colors duration-200",
                           isActive
-                            ? 'text-gray-900'
+                            ? "text-gray-900"
                             : isCompleted
-                              ? 'text-purple-600'
-                              : 'text-gray-400 group-hover:text-gray-600'
+                              ? "text-purple-600"
+                              : "text-gray-400 group-hover:text-gray-600",
                         )}
                       >
                         {s.title}
                       </p>
                       <p
                         className={cn(
-                          'text-xs mt-0.5 transition-colors duration-200',
-                          isActive ? 'text-purple-500' : 'text-gray-400'
+                          "text-xs mt-0.5 transition-colors duration-200",
+                          isActive ? "text-purple-500" : "text-gray-400",
                         )}
                       >
                         Step {s.step}
@@ -120,7 +120,7 @@ export default function HowItWorks() {
                     </div>
                   </div>
                 </button>
-              )
+              );
             })}
           </nav>
 
@@ -176,10 +176,10 @@ export default function HowItWorks() {
                 onClick={goPrev}
                 disabled={currentStep === 0}
                 className={cn(
-                  'px-5 py-2.5 rounded-full border font-medium text-sm transition-all duration-200 cursor-pointer',
+                  "px-5 py-2.5 rounded-full border font-medium text-sm transition-all duration-200 cursor-pointer",
                   currentStep === 0
-                    ? 'border-gray-200 text-gray-300 cursor-not-allowed'
-                    : 'border-purple-300 text-purple-600 hover:bg-purple-50 hover:border-purple-400'
+                    ? "border-gray-200 text-gray-300 cursor-not-allowed"
+                    : "border-purple-300 text-purple-600 hover:bg-purple-50 hover:border-purple-400",
                 )}
               >
                 Back
@@ -188,10 +188,10 @@ export default function HowItWorks() {
                 onClick={goNext}
                 disabled={currentStep === PROCESS_STEPS.length - 1}
                 className={cn(
-                  'px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-200 cursor-pointer',
+                  "px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-200 cursor-pointer",
                   currentStep === PROCESS_STEPS.length - 1
-                    ? 'bg-purple-300 text-white cursor-not-allowed'
-                    : 'bg-purple-600 text-white hover:bg-purple-700 shadow-md hover:shadow-lg'
+                    ? "bg-purple-300 text-white cursor-not-allowed"
+                    : "bg-purple-600 text-white hover:bg-purple-700 shadow-md hover:shadow-lg",
                 )}
               >
                 Next
@@ -201,5 +201,5 @@ export default function HowItWorks() {
         </div>
       </div>
     </section>
-  )
+  );
 }
