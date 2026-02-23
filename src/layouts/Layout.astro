@@ -16,7 +16,10 @@ const {
   description = "Book a custom hat bar experience for your party, wedding, fundraiser, or pop-up event. Premium quality hats, one-of-a-kind designs from The Little Apple.",
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "http://localhost:4321");
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site ?? "http://localhost:4321",
+);
 ---
 
 <!doctype html>
@@ -25,6 +28,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "http://localhost
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.webp" type="image/webp" />

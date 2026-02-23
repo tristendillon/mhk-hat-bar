@@ -1,23 +1,24 @@
 // @ts-check
-import { defineConfig } from 'astro/config'
-import react from '@astrojs/react'
-import tailwindcss from '@tailwindcss/vite'
-import cloudflare from '@astrojs/cloudflare'
-import svgr from 'vite-plugin-svgr'
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
+import tailwindcss from "@tailwindcss/vite";
+import cloudflare from "@astrojs/cloudflare";
+import svgr from "vite-plugin-svgr";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://manhatterhatbar.com',
-  output: 'static',
+  // Hardcoded dev deploment url
+  site: "https://mhk-hat-bar.pages.dev",
+  output: "static",
   adapter: cloudflare({
-    imageService: 'compile',
+    imageService: "compile",
   }),
   integrations: [react()],
   vite: {
     plugins: [
       tailwindcss(),
       svgr({
-        include: '**/*.svg?react',
+        include: "**/*.svg?react",
       }),
     ],
     resolve: {
@@ -25,9 +26,9 @@ export default defineConfig({
       // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
       alias: import.meta.env.PROD
         ? {
-            'react-dom/server': 'react-dom/server.edge',
+            "react-dom/server": "react-dom/server.edge",
           }
         : undefined,
     },
   },
-})
+});
