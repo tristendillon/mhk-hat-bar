@@ -102,7 +102,13 @@ export function Navigation() {
 
           {/* Mobile Menu */}
           <div className="md:hidden">
-            <MobileNavSheetTrigger />
+            <MobileNavSheetTrigger
+              className={cn(
+                isScrolled
+                  ? 'text-muted-accent'
+                  : 'text-accent hover:text-primary'
+              )}
+            />
           </div>
         </div>
       </nav>

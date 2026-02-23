@@ -1,30 +1,30 @@
 'use client'
 
 import { useState } from 'react'
+import { useSwipeable } from 'react-swipeable'
 import { PROCESS_STEPS } from '@/lib/constants'
 import { CheckIcon } from '@/icons'
 import { cn } from '@/lib/utils'
 
 export default function HowItWorks() {
   const [currentStep, setCurrentStep] = useState(0)
-  const [displayStep, setDisplayStep] = useState(0)
-  const [isVisible, setIsVisible] = useState(true)
+  const [dragOffset, setDragOffset] = useState(0)
 
   const goToStep = (next: number) => {
-    if (next === currentStep) return
-    setIsVisible(false)
-    setTimeout(() => {
-      setDisplayStep(next)
-      setCurrentStep(next)
-      setIsVisible(true)
-    }, 180)
+    setCurrentStep(next)
+    setDragOffset(0)
   }
 
   const goNext = () =>
     goToStep(Math.min(currentStep + 1, PROCESS_STEPS.length - 1))
   const goPrev = () => goToStep(Math.max(currentStep - 1, 0))
 
-  const step = PROCESS_STEPS[displayStep]
+  const handlers = useSwipeable({
+    onSwiping: ({ deltaX }) => setDragOffset(deltaX),
+    onSwipedLeft: () => goNext(),
+    onSwipedRight: () => goPrev(),
+    trackMouse: true,
+  })
 
   return (
     <section id="how-it-works" className="py-24 bg-white">
@@ -39,33 +39,27 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        {/* Body: stepper left + content right */}
         <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 lg:gap-16 items-start">
-          {/* Left: Vertical Stepper */}
+          {/* Left: Stepper */}
           <nav className="flex flex-row lg:flex-col items-center lg:items-start justify-center lg:justify-start gap-0 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 h-full">
             {PROCESS_STEPS.map((s, i) => {
               const isActive = i === currentStep
               const isCompleted = i < currentStep
-
               return (
                 <button
                   key={i}
                   onClick={() => goToStep(i)}
-                  className="group flex-1 relative flex
-                   lg:flex-col gap-4 cursor-pointer text-left pr-6 lg:pr-0 lg:pb-0 shrink-0"
+                  className="group flex-1 relative flex lg:flex-col gap-4 cursor-pointer text-left pr-6 lg:pr-0 lg:pb-0 shrink-0"
                 >
-                  {/* Connector line */}
+                  {/* Connector lines */}
                   {i < PROCESS_STEPS.length - 1 && (
                     <>
-                      {/* Mobile — horizontal line */}
                       <div
                         className={cn(
                           'absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 md:hidden',
                           isCompleted ? 'bg-purple-400' : 'bg-gray-200'
                         )}
                       />
-
-                      {/* Desktop — vertical line */}
                       <div
                         className={cn(
                           'absolute top-10 left-5 hidden h-full w-0.5 -translate-x-1/2 md:block',
@@ -76,11 +70,9 @@ export default function HowItWorks() {
                   )}
 
                   <div className="flex items-center gap-4 lg:pb-10">
-                    {/* Circle */}
                     <div
                       className={cn(
-                        'relative z-10 flex h-10 min-w-[72px] md:min-w-0 md:h-10 md:w-10 shrink-0',
-                        'items-center justify-center rounded-full border-2 font-bold text-sm transition-all duration-300',
+                        'relative z-10 flex h-10 min-w-[72px] md:min-w-0 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full border-2 font-bold text-sm transition-all duration-300',
                         isActive
                           ? 'border-purple-600 bg-purple-600 text-white shadow-md shadow-purple-200'
                           : isCompleted
@@ -91,13 +83,9 @@ export default function HowItWorks() {
                       {isCompleted ? (
                         <CheckIcon className="w-4 h-4" />
                       ) : (
-                        <span className="text-sm font-bold">
-                          <span className="md:hidden">Step</span> {s.step}
-                        </span>
+                        <span className="text-sm font-bold">{s.step}</span>
                       )}
                     </div>
-
-                    {/* Title */}
                     <div className="hidden lg:block">
                       <p
                         className={cn(
@@ -126,43 +114,54 @@ export default function HowItWorks() {
             })}
           </nav>
 
-          {/* Right: Step Content */}
-          <div
-            className={cn(
-              'transition-all duration-200 ease-in-out',
-              isVisible
-                ? 'opacity-100 translate-y-0'
-                : 'opacity-0 translate-y-3'
-            )}
-          >
-            {/* Image */}
-            <div className="relative overflow-hidden rounded-2xl aspect-video bg-gray-100 mb-8">
-              <img
-                src={step.image.src}
-                alt={step.image.alt}
-                className="w-full h-full object-cover"
-              />
-              {/* Step badge over image */}
-              <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 shadow-sm">
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-white text-xs font-bold">
-                  {step.step}
+          {/* Right: Pager */}
+          <div {...handlers} className="overflow-hidden relative">
+            {/* Horizontal row of steps */}
+            <div
+              className="flex transition-transform duration-300 ease-out w-full"
+              style={{
+                transform: `translateX(calc(${
+                  -currentStep * 100
+                }% + ${dragOffset}px))`,
+              }}
+            >
+              {PROCESS_STEPS.map((step, i) => (
+                <div
+                  key={i}
+                  className="w-full shrink-0 flex flex-col gap-4  px-0 lg:px-4"
+                >
+                  {/* Image */}
+                  <div className="relative overflow-hidden rounded-2xl aspect-video w-full">
+                    <img
+                      src={step.image.src}
+                      alt={step.image.alt}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1.5 shadow-sm">
+                      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-white text-xs font-bold">
+                        {step.step}
+                      </div>
+                      <span className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
+                        Step {step.step} of {PROCESS_STEPS.length}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Text (scrollable if too long) */}
+                  <div>
+                    <h3 className="text-2xl font-semibold text-gray-900 mb-3">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-500 text-base leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-                <span className="text-xs font-semibold text-gray-700 uppercase tracking-wide">
-                  Step {step.step} of {PROCESS_STEPS.length}
-                </span>
-              </div>
+              ))}
             </div>
 
-            {/* Text */}
-            <h3 className="text-2xl font-semibold text-gray-900 mb-3">
-              {step.title}
-            </h3>
-            <p className="text-gray-500 text-base leading-relaxed max-w-lg mb-8">
-              {step.description}
-            </p>
-
-            {/* Navigation */}
-            <div className="flex gap-3">
+            {/* Navigation Buttons */}
+            <div className="flex gap-3 mt-4">
               <button
                 onClick={goPrev}
                 disabled={currentStep === 0}
