@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/sections/Hero.astro";
 import EventTypes from "@/components/sections/EventTypes.astro";
-import HowItWorks from "@/components/sections/HowItWorks.astro";
+import HowItWorks from "@/components/sections/HowItWorks";
 import Gallery from "@/components/sections/Gallery.astro";
 import About from "@/components/sections/About.astro";
 import Contact from "@/components/sections/Contact.astro";
@@ -15,7 +15,7 @@ import Footer from "@/components/sections/Footer.astro";
   <main id="main-content">
     <Hero />
     <EventTypes />
-    <HowItWorks />
+    <HowItWorks client:only="react" />
     <Gallery />
     <About />
     <Contact />

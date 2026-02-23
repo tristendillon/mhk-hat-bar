@@ -1,49 +1,49 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from 'react'
+import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import { Icon } from "@/components/ui/icon";
-import { Menu } from "@/icons";
-import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+} from '@/components/ui/dropdown-menu'
+import { Icon } from '@/components/ui/icon'
+import { Menu } from '@/icons'
+import { NAV_LINKS, SITE_CONFIG } from '@/lib/constants'
+import { cn } from '@/lib/utils'
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+      setIsScrolled(window.scrollY > 50)
+    }
 
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    handleScroll()
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    e.preventDefault();
-    const target = document.querySelector(href);
+    e.preventDefault()
+    const target = document.querySelector(href)
     if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+      target.scrollIntoView({ behavior: 'smooth' })
     }
-  };
+  }
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md border-purple-200"
-          : "bg-transparent"
+          ? 'bg-white/95 backdrop-blur-md shadow-md border-purple-200'
+          : 'bg-transparent'
       )}
     >
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -51,15 +51,16 @@ export function Navigation() {
           {/* Logo */}
           <a
             href="#home"
-            onClick={(e) => handleNavClick(e, "#home")}
+            onClick={(e) => handleNavClick(e, '#home')}
             className="flex items-center gap-2"
           >
             <span
               className={cn(
-                "text-xl font-bold font-heading tracking-tight transition-colors",
-                isScrolled ? "text-purple-600" : "text-white"
+                'text-xl font-bold font-heading tracking-tight transition-colors flex items-center gap-2',
+                isScrolled ? 'text-purple-600' : 'text-white'
               )}
             >
+              <Icon src={'/favicon.webp'} size={24} />
               The Manhatter
             </span>
           </a>
@@ -72,8 +73,10 @@ export function Navigation() {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-purple-600",
-                  isScrolled ? "text-gray-700" : "text-white/90 hover:text-white"
+                  'text-sm font-medium transition-colors hover:text-purple-600',
+                  isScrolled
+                    ? 'text-gray-700'
+                    : 'text-white/90 hover:text-white'
                 )}
               >
                 {link.label}
@@ -81,10 +84,10 @@ export function Navigation() {
             ))}
             <Button
               className={cn(
-                "rounded-full px-6",
+                'rounded-full px-6',
                 isScrolled
-                  ? "bg-purple-600 hover:bg-purple-700 text-white"
-                  : "bg-white text-purple-600 hover:bg-white/90"
+                  ? 'bg-purple-600 hover:bg-purple-700 text-white'
+                  : 'bg-white text-purple-600 hover:bg-white/90'
               )}
               render={
                 <a
@@ -101,10 +104,10 @@ export function Navigation() {
             <DropdownMenu>
               <DropdownMenuTrigger
                 className={cn(
-                  "p-2 rounded-lg transition-colors",
+                  'p-2 rounded-lg transition-colors',
                   isScrolled
-                    ? "text-gray-700 hover:bg-gray-100"
-                    : "text-white hover:bg-white/10"
+                    ? 'text-gray-700 hover:bg-gray-100'
+                    : 'text-white hover:bg-white/10'
                 )}
               >
                 <Icon src={Menu} size={24} />
@@ -136,7 +139,7 @@ export function Navigation() {
         </div>
       </nav>
     </header>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation
