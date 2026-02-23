@@ -7,9 +7,9 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   site: "https://manhatterhatbar.com",
-  output: "server",
+  output: "static",
   adapter: cloudflare({
-    imageService: "passthrough",
+    imageService: "compile",
   }),
   integrations: [react()],
   vite: {
