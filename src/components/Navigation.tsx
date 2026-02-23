@@ -12,6 +12,7 @@ import { Icon } from '@/components/ui/icon'
 import { Menu } from '@/icons'
 import { NAV_LINKS, SITE_CONFIG } from '@/lib/constants'
 import { cn } from '@/lib/utils'
+import { MobileNavSheetTrigger } from '@/components/HamburgerMenu'
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -101,40 +102,7 @@ export function Navigation() {
 
           {/* Mobile Menu */}
           <div className="md:hidden">
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                className={cn(
-                  'p-2 rounded-lg transition-colors',
-                  isScrolled
-                    ? 'text-gray-700 hover:bg-gray-100'
-                    : 'text-white hover:bg-white/10'
-                )}
-              >
-                <Icon src={Menu} size={24} />
-                <span className="sr-only">Open menu</span>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48">
-                {NAV_LINKS.map((link) => (
-                  <DropdownMenuItem key={link.href}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className="w-full"
-                    >
-                      {link.label}
-                    </a>
-                  </DropdownMenuItem>
-                ))}
-                <DropdownMenuItem>
-                  <a
-                    href={`mailto:${SITE_CONFIG.email}?subject=Event Inquiry — The Manhatter Hat Bar`}
-                    className="w-full text-purple-600 font-medium"
-                  >
-                    Book Now
-                  </a>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <MobileNavSheetTrigger />
           </div>
         </div>
       </nav>

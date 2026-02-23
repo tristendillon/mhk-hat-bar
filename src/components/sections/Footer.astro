@@ -1,7 +1,7 @@
 ---
-import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { CONTACT_LINKS, NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { Icon } from "@/components/ui/icon";
-import { InstagramIcon, MapPin } from "@/icons";
+import { InstagramIcon, MapPin, type LucideIcon } from "@/icons";
 ---
 
 <footer class="bg-gray-900 text-white">
@@ -17,7 +17,7 @@ import { InstagramIcon, MapPin } from "@/icons";
         <p class="mt-2 text-purple-300">{SITE_CONFIG.tagline}</p>
         <div class="mt-4 flex items-center gap-2 text-gray-400">
           <Icon src={MapPin} size={16} />
-          <span>{SITE_CONFIG.location}</span>
+          <span class="text-muted-accent">{SITE_CONFIG.location}</span>
         </div>
       </div>
 
@@ -32,7 +32,7 @@ import { InstagramIcon, MapPin } from "@/icons";
               <li>
                 <a
                   href={link.href}
-                  class="text-gray-300 hover:text-purple-400 transition-colors"
+                  class="text-accent hover:text-purple-400 transition-colors"
                 >
                   {link.label}
                 </a>
@@ -55,16 +55,18 @@ import { InstagramIcon, MapPin } from "@/icons";
         <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-400">
           Connect
         </h4>
-        <div class="mt-4">
+        <div class="mt-4 flex flex-col gap-2">
+          {CONTACT_LINKS.map((link) => (
           <a
-            href={SITE_CONFIG.instagramUrl}
+            href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors"
+            class="inline-flex items-center gap-2 text-accent hover:text-purple-400 transition-colors"
           >
-            <Icon src={InstagramIcon} size={20} alt="Instagram" />
-            <span>{SITE_CONFIG.instagram}</span>
+            <Icon src={link.icon} size={20} />
+            <span>{link.label}</span>
           </a>
+          ))}
         </div>
       </div>
     </div>

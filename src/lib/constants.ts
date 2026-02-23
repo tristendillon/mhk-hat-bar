@@ -1,3 +1,5 @@
+import { InstagramIcon, Mail, type LucideIcon } from '@/icons'
+
 export const SITE_CONFIG = {
   name: 'The Manhatter Hat Bar',
   tagline: 'A Custom Hat Bar from The Lil Apple',
@@ -8,6 +10,14 @@ export const SITE_CONFIG = {
   instagramUrl: 'https://instagram.com/manhatterhatbar',
   location: 'Manhattan, Kansas',
 } as const
+export const CONTACT_LINKS = [
+  { label: 'Instagram', href: SITE_CONFIG.instagramUrl, icon: InstagramIcon },
+  {
+    label: 'Email',
+    href: `mailto:${SITE_CONFIG.email}?subject=Event Inquiry — The Manhatter Hat Bar`,
+    icon: Mail,
+  },
+] as const
 
 export const NAV_LINKS = [
   { label: 'Home', href: '#home' },

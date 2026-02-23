@@ -1,8 +1,8 @@
 // Custom SVG icons (imported as URL strings for use with Icon component)
-export { default as InstagramIcon } from "./instagram.svg?url";
+export { default as InstagramIcon } from './instagram.svg?react'
 
 // Re-export type for Icon component
-export type { LucideIcon } from "lucide-react";
+export type { LucideIcon } from 'lucide-react'
 
 // Re-export Lucide icons used throughout the app
 export {
@@ -20,4 +20,4 @@ export {
   Star,
   Users,
   X as XIcon,
-} from "lucide-react";
+} from 'lucide-react'
