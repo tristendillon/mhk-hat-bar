@@ -53,7 +53,7 @@ export function MobileNavSheetTrigger({
         <nav className="flex flex-col gap-4">
           {NAV_LINKS.map((link) => (
             <a
-              onClick={(e) => {
+              onClick={() => {
                 setOpen(false)
               }}
               key={link.href}

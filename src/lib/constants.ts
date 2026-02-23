@@ -1,4 +1,4 @@
-import { InstagramIcon, Mail, type LucideIcon } from '@/icons'
+import { InstagramIcon, Mail } from '@/icons'
 
 export const SITE_CONFIG = {
   name: 'The Manhatter Hat Bar',

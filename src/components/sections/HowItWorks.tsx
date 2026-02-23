@@ -1,11 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { PROCESS_STEPS } from '@/lib/constants'
 import { CheckIcon } from '@/icons'
 import { cn } from '@/lib/utils'
 
+const SWIPE_THRESHOLD = 0.3
 export default function HowItWorks() {
   const [currentStep, setCurrentStep] = useState(0)
   const [dragOffset, setDragOffset] = useState(0)
@@ -21,9 +22,18 @@ export default function HowItWorks() {
 
   const handlers = useSwipeable({
     onSwiping: ({ deltaX }) => setDragOffset(deltaX),
-    onSwipedLeft: () => goNext(),
-    onSwipedRight: () => goPrev(),
-    trackMouse: true,
+    onSwiped: ({ deltaX, event }) => {
+      const width = (event.currentTarget as HTMLDivElement)?.offsetWidth || 0
+      const swipeFraction = Math.abs(deltaX) / width
+
+      if (deltaX < 0 && swipeFraction > SWIPE_THRESHOLD) {
+        goNext()
+      } else if (deltaX > 0 && swipeFraction > SWIPE_THRESHOLD) {
+        goPrev()
+      } else {
+        setDragOffset(0)
+      }
+    },
   })
 
   return (
@@ -76,8 +86,8 @@ export default function HowItWorks() {
                         isActive
                           ? 'border-purple-600 bg-purple-600 text-white shadow-md shadow-purple-200'
                           : isCompleted
-                          ? 'border-purple-400 bg-purple-50 text-purple-600'
-                          : 'border-gray-200 bg-white text-gray-400 group-hover:border-purple-300 group-hover:text-purple-400'
+                            ? 'border-purple-400 bg-purple-50 text-purple-600'
+                            : 'border-gray-200 bg-white text-gray-400 group-hover:border-purple-300 group-hover:text-purple-400'
                       )}
                     >
                       {isCompleted ? (
@@ -93,8 +103,8 @@ export default function HowItWorks() {
                           isActive
                             ? 'text-gray-900'
                             : isCompleted
-                            ? 'text-purple-600'
-                            : 'text-gray-400 group-hover:text-gray-600'
+                              ? 'text-purple-600'
+                              : 'text-gray-400 group-hover:text-gray-600'
                         )}
                       >
                         {s.title}
