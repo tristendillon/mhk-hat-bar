@@ -1,0 +1,79 @@
+---
+import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { Instagram, MapPin } from "lucide-react";
+---
+
+<footer class="bg-gray-900 text-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12"
+    >
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <h3 class="font-heading text-2xl font-bold text-white">
+          {SITE_CONFIG.name}
+        </h3>
+        <p class="mt-2 text-purple-300">{SITE_CONFIG.tagline}</p>
+        <div class="mt-4 flex items-center gap-2 text-gray-400">
+          <MapPin className="h-4 w-4" />
+          <span>{SITE_CONFIG.location}</span>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-400">
+          Quick Links
+        </h4>
+        <ul class="mt-4 space-y-2">
+          {
+            NAV_LINKS.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-gray-300 hover:text-purple-400 transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a
+              href={`mailto:${SITE_CONFIG.email}?subject=Event Inquiry — The Manhatter Hat Bar`}
+              class="text-purple-400 hover:text-purple-300 transition-colors font-medium"
+            >
+              Book Now
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Connect -->
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-400">
+          Connect
+        </h4>
+        <div class="mt-4">
+          <a
+            href={SITE_CONFIG.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors"
+          >
+            <Instagram className="h-5 w-5" />
+            <span>{SITE_CONFIG.instagram}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-12 pt-8 border-t border-gray-800">
+      <p class="text-center text-gray-400 text-sm">
+        &copy; {new Date().getFullYear()}
+        {SITE_CONFIG.name}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>

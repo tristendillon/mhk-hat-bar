@@ -1,0 +1,62 @@
+---
+import { SITE_CONFIG } from "@/lib/constants";
+import { ChevronDown } from "lucide-react";
+---
+
+<section
+  id="home"
+  class="relative min-h-screen flex items-center justify-center overflow-hidden"
+>
+  <!-- Background Gradient -->
+  <div
+    class="absolute inset-0 bg-linear-to-br from-purple-600 via-purple-700 to-purple-900"
+  >
+  </div>
+
+  <!-- Decorative Elements -->
+  <div class="absolute inset-0 overflow-hidden">
+    <div
+      class="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-purple-500/20 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="absolute -bottom-1/4 -left-1/4 w-1/2 h-1/2 bg-purple-400/10 rounded-full blur-3xl"
+    >
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-4xl px-4 text-center">
+    <h1
+      class="font-heading text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl"
+    >
+      Create Your Custom Hat
+    </h1>
+    <p class="mt-6 text-xl text-purple-100 max-w-2xl mx-auto leading-relaxed">
+      Premium quality hats. One-of-a-kind designs. From the Little Apple.
+    </p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href={`mailto:${SITE_CONFIG.email}?subject=Event Inquiry — The Manhatter Hat Bar`}
+        class="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg transition-all hover:bg-white/90 hover:shadow-xl hover:scale-105"
+      >
+        Book Your Event
+      </a>
+      <a
+        href="#gallery"
+        class="inline-flex items-center justify-center rounded-full border-2 border-white/50 px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10 hover:border-white"
+      >
+        See Our Work
+      </a>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <a
+    href="#events"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors animate-bounce"
+    aria-label="Scroll to events section"
+  >
+    <ChevronDown className="h-8 w-8" />
+  </a>
+</section>

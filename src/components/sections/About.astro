@@ -1,0 +1,76 @@
+---
+import { SITE_CONFIG } from "@/lib/constants";
+import { MapPin, Star, Sparkles } from "lucide-react";
+---
+
+<section id="about" class="py-24 bg-purple-50">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Image -->
+      <div class="relative">
+        <div class="aspect-4/5 overflow-hidden rounded-2xl shadow-2xl">
+          <img
+            src="https://images.unsplash.com/photo-1529958030586-3aae4ca485ff?w=800&h=1000&fit=crop"
+            alt="Custom hat creation at The Manhatter Hat Bar"
+            class="h-full w-full object-cover"
+          />
+        </div>
+        <!-- Decorative Badge -->
+        <div
+          class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 hidden sm:block"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100"
+            >
+              <Star className="h-6 w-6 text-purple-600" />
+            </div>
+            <div>
+              <p class="font-semibold text-gray-900">Premium Quality</p>
+              <p class="text-sm text-gray-500">Handcrafted with love</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div>
+        <h2 class="font-heading text-4xl font-bold text-gray-900 sm:text-5xl">
+          Born in the Little Apple
+        </h2>
+        <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+          The Manhatter Hat Bar brings the joy of custom hat creation to
+          Manhattan, Kansas and beyond. We believe every person deserves a hat
+          as unique as they are.
+        </p>
+        <p class="mt-4 text-lg text-gray-600 leading-relaxed">
+          Whether you're celebrating a milestone, hosting a gathering, or
+          looking for a one-of-a-kind experience, our mobile hat bar brings the
+          magic directly to you. Premium hats, endless customization options,
+          and memories that last a lifetime.
+        </p>
+
+        <!-- Key Points -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="flex items-center gap-3">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100"
+            >
+              <MapPin className="h-5 w-5 text-purple-600" />
+            </div>
+            <span class="font-medium text-gray-900">{SITE_CONFIG.location}</span
+            >
+          </div>
+          <div class="flex items-center gap-3">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100"
+            >
+              <Sparkles className="h-5 w-5 text-purple-600" />
+            </div>
+            <span class="font-medium text-gray-900">One-of-a-Kind Designs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+import { SITE_CONFIG } from "@/lib/constants";
+import { Mail, Instagram } from "lucide-react";
+---
+
+<section id="contact" class="py-24 bg-white">
+  <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Section Header -->
+    <h2 class="font-heading text-4xl font-bold text-gray-900 sm:text-5xl">
+      Ready to Create Something Special?
+    </h2>
+    <p class="mt-6 text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+      Whether it's a birthday, wedding, fundraiser, or pop-up, we'd love to
+      bring The Manhatter Hat Bar to your next event. Reach out to check
+      availability.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href={`mailto:${SITE_CONFIG.email}?subject=Event Inquiry — The Manhatter Hat Bar`}
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-purple-700 hover:shadow-xl hover:scale-105"
+      >
+        <Mail className="h-5 w-5" />
+        Send Us an Email
+      </a>
+      <a
+        href={SITE_CONFIG.instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-purple-200 bg-white px-8 py-4 text-lg font-semibold text-purple-600 transition-all hover:border-purple-300 hover:bg-purple-50"
+      >
+        <Instagram className="h-5 w-5" />
+        {SITE_CONFIG.instagram}
+      </a>
+    </div>
+  </div>
+</section>
