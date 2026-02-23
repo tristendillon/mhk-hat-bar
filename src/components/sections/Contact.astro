@@ -1,6 +1,7 @@
 ---
 import { SITE_CONFIG } from "@/lib/constants";
-import { Mail, Instagram } from "lucide-react";
+import { Icon } from "@/components/ui/icon";
+import { Mail, InstagramIcon } from "@/icons";
 ---
 
 <section id="contact" class="py-24 bg-white">
@@ -21,7 +22,7 @@ import { Mail, Instagram } from "lucide-react";
         href={`mailto:${SITE_CONFIG.email}?subject=Event Inquiry — The Manhatter Hat Bar`}
         class="inline-flex items-center justify-center gap-2 rounded-full bg-purple-600 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all hover:bg-purple-700 hover:shadow-xl hover:scale-105"
       >
-        <Mail className="h-5 w-5" />
+        <Icon src={Mail} size={20} />
         Send Us an Email
       </a>
       <a
@@ -30,7 +31,7 @@ import { Mail, Instagram } from "lucide-react";
         rel="noopener noreferrer"
         class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-purple-200 bg-white px-8 py-4 text-lg font-semibold text-purple-600 transition-all hover:border-purple-300 hover:bg-purple-50"
       >
-        <Instagram className="h-5 w-5" />
+        <Icon src={InstagramIcon} size={20} alt="Instagram" />
         {SITE_CONFIG.instagram}
       </a>
     </div>

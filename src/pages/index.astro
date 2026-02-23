@@ -11,7 +11,7 @@ import Footer from "@/components/sections/Footer.astro";
 ---
 
 <Layout>
-  <Navigation client:load />
+  <Navigation client:only="react" />
   <main id="main-content">
     <Hero />
     <EventTypes />

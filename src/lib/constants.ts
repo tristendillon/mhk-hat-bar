@@ -1,5 +1,3 @@
-import type { LucideIcon } from "lucide-react";
-
 export const SITE_CONFIG = {
   name: "The Manhatter Hat Bar",
   tagline: "A Custom Hat Bar from The Lil Apple",

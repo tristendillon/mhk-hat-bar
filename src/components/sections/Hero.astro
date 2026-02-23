@@ -1,6 +1,7 @@
 ---
 import { SITE_CONFIG } from "@/lib/constants";
-import { ChevronDown } from "lucide-react";
+import { Icon } from "@/components/ui/icon";
+import { ChevronDown } from "@/icons";
 ---
 
 <section
@@ -57,6 +58,6 @@ import { ChevronDown } from "lucide-react";
     class="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white transition-colors animate-bounce"
     aria-label="Scroll to events section"
   >
-    <ChevronDown className="h-8 w-8" />
+    <Icon src={ChevronDown} size={32} />
   </a>
 </section>

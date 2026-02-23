@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -9,6 +8,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { Icon } from "@/components/ui/icon";
+import { Menu } from "@/icons";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -41,7 +42,7 @@ export function Navigation() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md  border-purple-200"
+          ? "bg-white/95 backdrop-blur-md shadow-md border-purple-200"
           : "bg-transparent"
       )}
     >
@@ -106,7 +107,7 @@ export function Navigation() {
                     : "text-white hover:bg-white/10"
                 )}
               >
-                <Menu className="h-6 w-6" />
+                <Icon src={Menu} size={24} />
                 <span className="sr-only">Open menu</span>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48">

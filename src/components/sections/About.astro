@@ -1,6 +1,7 @@
 ---
 import { SITE_CONFIG } from "@/lib/constants";
-import { MapPin, Star, Sparkles } from "lucide-react";
+import { Icon } from "@/components/ui/icon";
+import { MapPin, Star, Sparkles } from "@/icons";
 ---
 
 <section id="about" class="py-24 bg-purple-50">
@@ -21,9 +22,9 @@ import { MapPin, Star, Sparkles } from "lucide-react";
         >
           <div class="flex items-center gap-3">
             <div
-              class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100"
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-purple-100 text-purple-600"
             >
-              <Star className="h-6 w-6 text-purple-600" />
+              <Icon src={Star} size={24} />
             </div>
             <div>
               <p class="font-semibold text-gray-900">Premium Quality</p>
@@ -54,18 +55,18 @@ import { MapPin, Star, Sparkles } from "lucide-react";
         <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="flex items-center gap-3">
             <div
-              class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100"
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100 text-purple-600"
             >
-              <MapPin className="h-5 w-5 text-purple-600" />
+              <Icon src={MapPin} size={20} />
             </div>
             <span class="font-medium text-gray-900">{SITE_CONFIG.location}</span
             >
           </div>
           <div class="flex items-center gap-3">
             <div
-              class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100"
+              class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100 text-purple-600"
             >
-              <Sparkles className="h-5 w-5 text-purple-600" />
+              <Icon src={Sparkles} size={20} />
             </div>
             <span class="font-medium text-gray-900">One-of-a-Kind Designs</span>
           </div>

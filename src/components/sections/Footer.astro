@@ -1,6 +1,7 @@
 ---
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
-import { Instagram, MapPin } from "lucide-react";
+import { Icon } from "@/components/ui/icon";
+import { InstagramIcon, MapPin } from "@/icons";
 ---
 
 <footer class="bg-gray-900 text-white">
@@ -15,7 +16,7 @@ import { Instagram, MapPin } from "lucide-react";
         </h3>
         <p class="mt-2 text-purple-300">{SITE_CONFIG.tagline}</p>
         <div class="mt-4 flex items-center gap-2 text-gray-400">
-          <MapPin className="h-4 w-4" />
+          <Icon src={MapPin} size={16} />
           <span>{SITE_CONFIG.location}</span>
         </div>
       </div>
@@ -61,7 +62,7 @@ import { Instagram, MapPin } from "lucide-react";
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 text-gray-300 hover:text-purple-400 transition-colors"
           >
-            <Instagram className="h-5 w-5" />
+            <Icon src={InstagramIcon} size={20} alt="Instagram" />
             <span>{SITE_CONFIG.instagram}</span>
           </a>
         </div>

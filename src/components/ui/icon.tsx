@@ -1,4 +1,4 @@
-import { type LucideIcon } from "lucide-react";
+import { type LucideIcon } from "@/icons";
 import { cn } from "@/lib/utils";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -81,12 +81,12 @@ function resolveSize(size: IconSize): {
  *
  * ```tsx
  * // Lucide / SVG component
- * import { Home } from "lucide-react"
- * <Icon src={Home} size={20} strokeWidth={1.5} className="text-violet-500" />
+ * import { Heart } from "@/icons"
+ * <Icon src={Heart} size={20} strokeWidth={1.5} className="text-violet-500" />
  *
  * // SVG file path / imported asset URL
- * import logo from "/public/svg/logo.svg"
- * <Icon src={logo} size={32} alt="Company logo" />
+ * import { InstagramIcon } from "@/icons"
+ * <Icon src={InstagramIcon} size={32} alt="Instagram" />
  * ```
  */
 function Icon(props: IconComponentProps): React.ReactElement;

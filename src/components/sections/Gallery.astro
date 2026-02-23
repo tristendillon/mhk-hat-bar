@@ -1,6 +1,7 @@
 ---
 import { GALLERY_IMAGES, SITE_CONFIG } from "@/lib/constants";
-import { Instagram } from "lucide-react";
+import { Icon } from "@/components/ui/icon";
+import { InstagramIcon } from "@/icons";
 ---
 
 <section id="gallery" class="py-24 bg-white">
@@ -40,7 +41,7 @@ import { Instagram } from "lucide-react";
         rel="noopener noreferrer"
         class="inline-flex items-center gap-2 text-purple-600 font-medium hover:text-purple-700 transition-colors"
       >
-        <Instagram className="h-5 w-5" />
+        <Icon src={InstagramIcon} size={20} alt="Instagram" />
         <span>Follow {SITE_CONFIG.instagram} on Instagram</span>
       </a>
     </div>
